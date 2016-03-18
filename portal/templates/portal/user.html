@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap3 %}
+
+{%block title%}
+    {%trans "User settings"%}
+{%endblock%}
+
+{%block content%}
+<section class="fullscreen nohero">
+    <div class="container venter">
+        <div class="row margin-bottom-20">
+
+            <div class="col-md-3">
+                <aside class="sidebar-left">
+                    <ul class="nav nav-pills nav-stacked nav-arrow">
+                        <li><a href="{%url "user-settings"%}">{%trans "User settings"%}</a>
+                        </li>
+                        <li>
+                            {%if request.user.has_usable_password%}
+                                <a href="{%url "account_change_password"%}">{%trans "Change password"%}</a>
+                            {%else%}
+                                <a href="{%url "account_set_password"%}">{%trans "Set password"%}</a>
+                            {%endif%}
+                        </li>
+                        <li><a href="{%url "account_email"%}">{%trans "Change e-mail"%}</a>
+                        </li>
+                    </ul>
+                </aside>
+                <div class="gap gap-small"></div>
+            </div>
+
+            <div class="col-md-5">
+                {%block inner_content%}                                
+                    <h1>{%trans "User settings"%}</h1>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {%csrf_token%}
+                        {% bootstrap_form form %}
+                        {%buttons%}
+                        <button class="btn btn-primary" type="submit">{% trans "Edit" %}</button>
+                        {%endbuttons%}
+                    </form>
+                {%endblock%} 
+                <div class="gap gap-small"></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{%endblock%}
+
