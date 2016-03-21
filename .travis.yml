@@ -1,4 +1,11 @@
 language: PYTHON
 sudo: required
 warnings_are_errors: true
-script: python manage.py migrate && python manage.py test
+install:
+    - pip install -r requirements.txt
+    - pip install coveralls
+script: 
+    - python manage.py migrate 
+    - coverage run --source=portal manage.py test
+after_success:
+    coveralls
