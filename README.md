@@ -9,3 +9,4 @@ So far I have added these Django apps:
 * __django-cms__ - CMS
 * __django-allauth__ - authentization through local login and social networks
 * __django-machina__ - forum
+
