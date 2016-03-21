@@ -40,4 +40,3 @@ nosetests.xml
 .idea
 .settings
 *.sqlite3
-
