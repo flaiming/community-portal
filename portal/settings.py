@@ -76,8 +76,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            MACHINA_MAIN_TEMPLATE_DIR,
             "portal/templates",
+            MACHINA_MAIN_TEMPLATE_DIR,
         ],
         'APP_DIRS': True,
         'OPTIONS': {
