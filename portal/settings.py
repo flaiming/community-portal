@@ -65,6 +65,11 @@ INSTALLED_APPS = [
     'sekizai',  # for JavaScript and CSS management
     'djangocms_admin_style',  # for the admin skin. You **must** add 'djangocms_admin_style' in the list **before** 'django.contrib.admin'.
     'djangocms_text_ckeditor',
+
+    'imagestore',
+    'imagestore.imagestore_cms',
+    'sorl.thumbnail',
+    'tagging',
 ] + get_machina_apps()
 
 MIDDLEWARE_CLASSES = [
@@ -211,3 +216,5 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "none"
+
+IMAGESTORE_SHOW_USER = False

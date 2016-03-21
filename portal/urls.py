@@ -27,6 +27,8 @@ urlpatterns = [
 
     url(r'^markdown/', include('django_markdown.urls')),
     url(r'^forum/', include(board.urls)),
+    url(r'^gallery/', include('imagestore.urls', namespace='imagestore')),
     url(r'^', include('cms.urls')),
+    url(r'^', include('cms.urls', namespace='imagestore')),
     url(r'^$', index, name='base-index')
 ]
