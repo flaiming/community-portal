@@ -3,3 +3,7 @@ django-allauth==0.25.2
 django-bootstrap-form==3.2
 django-machina==0.1.1
 django-cms==3.2.3
+Pillow>=2
+django-filer==0.9.9
+cmsplugin-filer==0.10.1
+django-reversion==1.8.5

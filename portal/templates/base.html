@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load cms_tags sekizai_tags %}
+{% load menu_tags %}
 
 <!DOCTYPE html>
 <html {% get_current_language as LANGUAGE_CODE %}lang="{{ LANGUAGE_CODE }}">
@@ -23,6 +25,8 @@
 
         {% block extra_css %}
         {% endblock extra_css %}
+        
+        {% render_block "css" %}
 
     </head>
     <body>
@@ -48,14 +52,20 @@
                     <li><a href="{%url "account_login"%}"><input type="button" class="menubutton" value="Login"></a></li>
                 {%endif%}
                 <li><a class="link" href="/forum/">Forum</a></li>
+                {% show_menu 0 100 100 100 %}
             </ul>
+
+            {% cms_toolbar %}
+            {% placeholder base_content %}
+            {% block base_content %}{% endblock %}
 
             {% block body %}
             {% endblock body %}
-
         </div>
 
         {% block extra_js %}
         {% endblock extra_js %}
+    
+        {% render_block "js" %}
     </body>
 </html>

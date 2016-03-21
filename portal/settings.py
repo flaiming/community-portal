@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for portal project.
 
@@ -11,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+gettext = lambda s: s
 
 from machina import get_apps as get_machina_apps, MACHINA_MAIN_TEMPLATE_DIR, MACHINA_MAIN_STATIC_DIR
 
@@ -55,11 +57,21 @@ INSTALLED_APPS = [
     # ... include the providers you want to enable:
     #'allauth.socialaccount.providers.google',
     #'allauth.socialaccount.providers.facebook',
+
+    # Django CMS
+    'cms',  # django CMS itself
+    'treebeard',  # utilities for implementing a tree
+    'menus',  # helper for model independent hierarchical website navigation
+    'sekizai',  # for JavaScript and CSS management
+    'djangocms_admin_style',  # for the admin skin. You **must** add 'djangocms_admin_style' in the list **before** 'django.contrib.admin'.
+    'djangocms_text_ckeditor',
 ] + get_machina_apps()
 
 MIDDLEWARE_CLASSES = [
+    'cms.middleware.utils.ApphookReloadMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -68,6 +80,11 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Machina
     'machina.apps.forum_permission.middleware.ForumPermissionMiddleware',
+    # Django CMS
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
 ]
 
 ROOT_URLCONF = 'portal.urls'
@@ -90,6 +107,9 @@ TEMPLATES = [
                 'machina.core.context_processors.metadata',
                 # `allauth` needs this from django
                 'django.template.context_processors.request',
+                # Django CMS
+                'sekizai.context_processors.sekizai',
+                'cms.context_processors.cms_settings',
             ],
         },
     },
@@ -148,6 +168,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+LANGUAGES = [
+    ('en-us', 'English'),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
@@ -177,3 +200,14 @@ HAYSTACK_CONNECTIONS = {
         'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
     },
 }
+
+CMS_TEMPLATES = (
+    ('cms/template_1.html', 'Template One'),
+    #('cms/template_2.html', 'Template Two'),
+)
+
+LOGIN_REDIRECT_URL = '/'
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "none"

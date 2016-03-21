@@ -27,5 +27,6 @@ urlpatterns = [
 
     url(r'^markdown/', include('django_markdown.urls')),
     url(r'^forum/', include(board.urls)),
+    url(r'^', include('cms.urls')),
     url(r'^$', index, name='base-index')
 ]
