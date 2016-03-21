@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/flaiming/community-portal.svg?branch=master)](https://travis-ci.org/flaiming/community-portal)
 [![Coverage Status](https://coveralls.io/repos/github/flaiming/community-portal/badge.svg?branch=master)](https://coveralls.io/github/flaiming/community-portal?branch=master)
 
 # Community portal
