@@ -1,3 +1,4 @@
 language: PYTHON
 sudo: required
 warnings_are_errors: true
+script: python manage.py migrate && python manage.py test
