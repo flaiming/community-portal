@@ -11,3 +11,7 @@ So far I have added these Django apps:
 * __django-allauth__ - authentization through local login and social networks
 * __django-machina__ - forum
 
+Planning to add:
+
+* calendar
+* gallery
